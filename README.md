@@ -19,7 +19,6 @@ Page Object Model (POM)
 
 Robot API (for system-level popup handling)
 
-📁 Project Structure
 SauceDemo/
 │
 ├── src/main/java/
@@ -50,6 +49,7 @@ SauceDemo/
 │       └── 02CheckoutPage.feature
 │
 └── extent.properties
+
 
 ⚙️ Setup & Installation
 1. Install Dependencies
