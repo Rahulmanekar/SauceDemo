@@ -1,13 +1,16 @@
 🚀 SauceDemo Automation Framework
 
-A Selenium–Cucumber based automation framework designed to test the SauceDemo web application using Java, JUnit/TestNG, and the Page Object Model (POM).
-The framework includes popup handling, custom reports, hooks, driver factory, and extensible utilities.
+A Selenium–Cucumber based automation framework designed to test the SauceDemo web application, built using Java, Selenium, Cucumber BDD, JUnit/TestNG, WebDriverManager and POM.
+
+The framework also includes popup handling, custom Extent reports, hooks, driver factory, and reusable utilities.
 
 📌 Tech Stack
 
 Java 11
 
 Selenium WebDriver
+
+WebDriverManager (No manual driver setup needed)
 
 Cucumber BDD
 
@@ -17,8 +20,9 @@ Extent Reports
 
 Page Object Model (POM)
 
-Robot API (for system-level popup handling)
+Robot API (system popup handling)
 
+📁 Folder Structure
 SauceDemo/
 │
 ├── src/main/java/
@@ -50,124 +54,155 @@ SauceDemo/
 │
 └── extent.properties
 
-
 ⚙️ Setup & Installation
 1. Install Dependencies
 
-Make sure the following are installed:
+Ensure the following are installed:
 
 Java 11
 
 Maven
 
-Eclipse/IntelliJ
+Eclipse / IntelliJ
 
 Chrome browser (recommended v135+)
 
-2. ChromeDriver
+2. Driver Setup – Using WebDriverManager (No Manual Driver Needed)
 
-You can use:
+You do NOT need to download ChromeDriver manually.
 
-Manual driver → set path in DriverFactory.java
+Your DriverFactory.java should include:
+
+WebDriverManager.chromedriver().setup();
+driver = new ChromeDriver(options);
+
+💡 Removed items
+
+❌ No need for
 
 System.setProperty("webdriver.chrome.driver", "F:\\chromedriver.exe");
 
 
-or WebDriverManager (optional)
+❌ No need to manually match ChromeDriver version.
 
 ▶️ How to Run Tests
-Run from IDE
+From IDE
 
 Right-click on:
-
 Testrunner.java → Run As → JUnit Test
 
-Run from Maven
+From Maven
 mvn clean test
 
 🧪 Framework Features
 ✔ Page Object Model (POM)
 
-Clean separation of page interactions and step definitions.
+All locators + actions reside in page classes.
+Step definitions are clean & readable.
 
 ✔ Hooks for Setup/Teardown
 
-Located in:
-
+Located under:
 com.utilities.Hooks
+
+✔ Driver Management
+
+Handled by:
+DriverFactory.java
+
+Includes:
+
+WebDriverManager setup
+
+ChromeOptions with popup suppression
+
+Automatic driver creation & cleanup
 
 ✔ Popup Handling
 
-Newly added popup handler for system/browser alerts.
+Two-level popup management:
 
-✔ Extent Reporting
+1️⃣ Browser popup suppression (ChromeOptions)
 
-Reports stored in:
+Disable:
 
-/test-output/ExtentReports/
+Save password popup
 
-🔐 Popup Handling (New Enhancement)
+Notifications
 
-The framework includes an advanced popup handler using:
+Automation banners
 
-ChromeOptions to suppress browser-level popups
+2️⃣ Robot-based System Popup Handling
 
-Robot API to handle OS-level dialogs such as:
+Handles OS-level popups like:
 
-“Save password?”
+Windows security dialogs
 
-“Keychain access”
+Save/Cancel prompts
 
-“Security warnings”
+Keychain / Credential popups
 
-“Windows credential prompts”
+Sample:
 
-Code Snippet (Robot Handler)
 Robot robot = new Robot();
 robot.keyPress(KeyEvent.VK_TAB);
 robot.keyPress(KeyEvent.VK_ENTER);
 
-🧹 Driver Lifecycle
+🧹 Driver Lifecycle (Updated for WebDriverManager)
 
-Using DriverFactory:
+Driver created using WebDriverManager
 
-Initializes driver with ChromeOptions
+ChromeOptions applied
 
-Loads fresh profile each run
+Fresh browser session each run
 
-Handles popups automatically
+Auto popup suppression
 
-Closes sessions in Hooks
+Closed in @After Hook
 
 📄 Reporting
 
-📌 Extent Report gets generated after execution.
-
-Path:
+Extent Reports automatically generated at:
 
 /test-output/ExtentReports/
+
+
+Includes:
+
+Step-wise logs
+
+Screenshots
+
+Pass/Fail summary
 
 🚧 Future Enhancements
 🔧 Core Improvements
 
 Multi-browser support (Firefox, Edge)
 
-CI/CD integration (Jenkins & GitHub Actions)
+Jenkins/GitHub CI integration
 
 Dynamic test data (Excel/JSON/DB)
 
-Retry mechanism for flaky tests
+Retry logic for flaky tests
 
-Headless execution with parallel runs
+Headless + parallel execution
 
-Cloud execution (BrowserStack / LambdaTest)
+Cloud execution (BrowserStack, LambdaTest)
 
-Auto screenshot embedding in reports
+Auto screenshot embedding
 
 🔔 Popup Handling Enhancements
 
-Added browser password popup suppression
+Advanced ChromeOptions tuning
 
-Integrated Robot-based popup handling mechanism
+Better OS-level handling
 
-Improved stability for system/security dialogs
+Auto retry on blocked popups
+
+If you want, I can also:
+
+✅ Rewrite your DriverFactory using WebDriverManager
+✅ Optimize your Hooks class
+✅ Remove NPE causes
+✅ Generate proper README.md for GitHub
