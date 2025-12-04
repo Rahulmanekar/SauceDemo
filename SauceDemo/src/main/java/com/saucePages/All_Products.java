@@ -34,4 +34,7 @@ public class All_Products extends Authentication{
 	
 	@FindBy(id="checkout")
 	public WebElement checkoutButton;
+	
+	@FindBy(xpath="//*[@class=\"shopping_cart_link\"]")
+	public WebElement mycart;
 }

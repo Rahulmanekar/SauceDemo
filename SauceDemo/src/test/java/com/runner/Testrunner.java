@@ -20,7 +20,8 @@ import io.cucumber.junit.CucumberOptions;
 		monochrome = true, 
 		dryRun = false, 
 		features = {"src/test/resources/com/feature/00Authentication.feature"
-//				,"src/test/resources/com/feature/01All_Product.feature"
+				,"src/test/resources/com/feature/01All_Product.feature"
+				,"src/test/resources/com/feature/02CheckoutPage.feature"
 				},
 		
 		glue = "com.stepdefs", 

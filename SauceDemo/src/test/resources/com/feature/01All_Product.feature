@@ -8,7 +8,7 @@ When Click on product image
 Then verify product dicription is display.
 
 Scenario: To test user can able to navigate back to product page 
-Given consumer webapp
+Given product description
 When Click on back to product button
 Then All product should be display.
 
