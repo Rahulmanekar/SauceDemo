@@ -26,7 +26,7 @@ import io.cucumber.junit.CucumberOptions;
 		
 		glue = "com.stepdefs", 
 		plugin = { "pretty", "html:target/cucumber.html",
-				//"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",}, 
 		publish = true
 )
